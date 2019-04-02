@@ -2,7 +2,6 @@ var express = require('express');
 var path = require('path');
 var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
-var app = require('express')();
 var db = require("./models");
 
 
