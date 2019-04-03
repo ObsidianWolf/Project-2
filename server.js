@@ -8,9 +8,11 @@ var db = require("./models");
 var app= express();
 
 
+
+
 app.use(express.static(path.join(__dirname, "public")));
 
-var PORT = process.env.PORT || 3306;
+var PORT = process.env.PORT || 8080;
 
 app.engine(
     "handlebars",
