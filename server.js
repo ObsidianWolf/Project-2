@@ -9,7 +9,6 @@ var app= express();
 
 
 
-
 app.use(express.static(path.join(__dirname, "public")));
 
 var PORT = process.env.PORT || 8080;
@@ -21,6 +20,9 @@ app.engine(
     })
   );
   app.set("view engine", "handlebars");
+
+require("./routes/apiRoutes.js")(app);
+require("./routes/htmlRoutes.js")(app);
   
 
 app.use(bodyParser.json());

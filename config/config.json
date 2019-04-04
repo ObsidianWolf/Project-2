@@ -1,14 +1,14 @@
 {
     "development": {
         "username": "root",
-        "password": "",
+        "password": "liam2898",
         "database": "reelBinge",
         "host": "127.0.0.1",
         "dialect": "mysql"
     },
     "test": {
         "username": "root",
-        "password": "",
+        "password": "liam2898",
         "database": "reelBinge",
         "host": "localhost",
         "dialect": "mysql",
