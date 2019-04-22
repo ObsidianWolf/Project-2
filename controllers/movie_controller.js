@@ -1,8 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var request = require('request');
-
-var db = require('../models');
+let express = require('express');
+let router = express.Router();
+let request = require('request');
+let db = require('../models');
 
 
 router.get('/', function(req, res) {
@@ -10,7 +9,7 @@ router.get('/', function(req, res) {
         order: [['movie_name', 'ASC']]
 
     }).then(function(data) {
-        var hbsObject = {
+        let hbsObject = {
             movies: data
         };
         res.render('index', hbsObject);
@@ -19,22 +18,10 @@ router.get('/', function(req, res) {
 
 router.get('/year', function(req, res) {
     db.Movie.findAll({
-        order: [['movie_year', 'DESC']]
+        order: [['movie_year', 'ASC']]
 
     }).then(function(data) {
-        var hbsObject = {
-            movies: data
-        };
-        res.render('index', hbsObject);
-    });
-});
-
-router.get('/rating', function(req, res) {
-    db.Movie.findAll({
-        order: [['movie_ratingImdb', 'DESC']]
-
-    }).then(function(data) {
-        var hbsObject = {
+        let hbsObject = {
             movies: data
         };
         res.render('index', hbsObject);
@@ -43,48 +30,42 @@ router.get('/rating', function(req, res) {
 
 router.post('/api/new/movie', function(req, res) {
 
-    var movieName = req.body.name;
+        let movieName = req.body.name;
 
-    var queryUrl = "http://omdbapi.com/?apikey=9ced732d&t=" + movieName;
+        let queryUrl = "http://omdbapi.com/?apikey=9ced732d&t=" + movieName;
 
     request(queryUrl, function(error, response, body) {
 
 
-        if (!error && JSON.parse(body).Response !== 'False') {
+        if (!error && JSON.parse(body).Response !== "false") {
             console.log(JSON.parse(body));
 
-            var imdbId = JSON.parse(body).imdbID;
+            let imdbId = JSON.parse(body).imdbID;
 
             console.log(imdbId);
 
-            var videos = "";
-
-            var options = {
+            let options = {
                 method: 'GET',
-                url: 'https://api.themoviedb.org/3/movie/' + imdbId + '/videos',
+                url: "https://api.themoviedb.org/3/movie/" + imdbId,
                 qs: {
-                    language: 'en-US',
-                    api_key: 'd9da5399c0e725be02ebdeb3eb4455b1'
+                    language: "en-US",
+                    api_key: "d9da5399c0e725be02ebdeb3eb4455b1"
                 },
-                body: '{}'
+                body: "{}"
             };
 
             request(options, function(error, response, result) {
 
                 if (error) res.redirect('/');
 
-
-               
-                if (!JSON.parse(result).results) {
+                    if (!JSON.parse(result).results) {
                 
                     res.redirect('/')
-                } else {
+                } else{
                     videos = JSON.parse(result).results[0].key;
-                    console.log(videos);
                     db.Movie.create({
                         movie_name: JSON.parse(body).Title,
                         movie_poster: JSON.parse(body).Poster,
-                        movie_plot: JSON.parse(body).Plot,
                         movie_year: JSON.parse(body).Year,
                         
 
@@ -96,50 +77,9 @@ router.post('/api/new/movie', function(req, res) {
             });
 
         } else {
-            console.log("\nOops...something went wrong");
+            console.log("\n...something is wrong");
             res.redirect('/');
         }
-    });
-});
-
-
-
-router.put('/api/new/watched/:id', function(req, res) {
-
-    var watched = true;
-    var ID = req.params.id;
-
-    db.Movie.update({
-        watched: watched,
-
-    }, { where: { id: ID } }).then(function() {
-        res.redirect('/');
-    });
-});
-
-
-router.put('/:id', function(req, res) {
-    var watched = false;
-    var ID = req.params.id;
-
-    db.Movie.update({
-        watched: watched,
-
-    }, { where: { id: ID } }).then(function() {
-        res.redirect('/');
-    });
-});
-
-
-
-router.delete('/api/new/delete/:id', function(req, res) {
-
-    var ID = req.params.id;
-
-    db.Movie.destroy({
-        where: { id: ID }
-    }).then(function() {
-        res.redirect('/');
     });
 });
 
