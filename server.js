@@ -3,8 +3,6 @@ var path = require('path');
 var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
 var db = require("./models");
-
-
 var app= express();
 
 

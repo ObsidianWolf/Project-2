@@ -1,8 +1,5 @@
-
-let Sequelize = require("sequelize");
-
 module.exports = function(sequelize, DataTypes) {
-    let movie = sequelize.define("movie", {
+    const Movie = sequelize.define("Movie", {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -27,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
 
     });
 
-    return movie;
+    return Movie;
     
 };
 
