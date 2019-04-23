@@ -4,7 +4,7 @@ module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     db.Movie.findAll({}).then(function(Movie) {
-      res.render("index", {
+      res.render("movie", {
         msg: "Welcome!",
         examples: Movie
       });
@@ -12,9 +12,9 @@ module.exports = function(app) {
   });
 
   // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
+  app.get("/movie/:id", function(req, res) {
     db.Movie.findOne({ where: { id: req.params.id } }).then(function(Movie) {
-      res.render("Movie", {
+      res.render("movie", {
         example: Movie
       });
     });
