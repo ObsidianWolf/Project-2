@@ -3,23 +3,25 @@ let router = express.Router();
 let request = require('request');
 let db = require('../models');
 
-router.get('/', function(req, res) {
+
+router.get('/', function (req, res) {
     db.Movie.findAll({
         order: [['movie_name', 'ASC']]
-    }).then(function(data) {
-        console.log(data)
+
+    }).then(function (data) {
         let hbsObject = {
             movies: data
         };
         res.render('index', hbsObject);
+        console.log(movieName);
     });
 });
 
-router.get('/year', function(req, res) {
+router.get('/year', function (req, res) {
     db.Movie.findAll({
         order: [['movie_year', 'ASC']]
 
-    }).then(function(data) {
+    }).then(function (data) {
         let hbsObject = {
             movies: data
         };
@@ -27,13 +29,13 @@ router.get('/year', function(req, res) {
     });
 });
 
-router.post('/api/new/movie', function(req, res) {
+router.post('/api/new/movie', function (req, res) {
 
-        let movieName = id.search;
+    let movieName = id.search;
 
-        let queryUrl = "http://omdbapi.com/?apikey=9ced732d&t=" + movieName;
+    let queryUrl = "http://omdbapi.com/?apikey=9ced732d&t=" + movieName;
 
-    request(queryUrl, function(error, response, body) {
+    request(queryUrl, function (error, response, body) {
 
 
         if (!error && JSON.parse(body).Response !== "false") {
@@ -53,22 +55,22 @@ router.post('/api/new/movie', function(req, res) {
                 body: "{}"
             };
 
-            request(options, function(error, response, result) {
+            request(options, function (error, response, result) {
 
                 if (error) res.redirect('/');
 
-                    if (!JSON.parse(result).results) {
-                
+                if (!JSON.parse(result).results) {
+
                     res.redirect('/')
-                } else{
+                } else {
                     videos = JSON.parse(result).results[0].key;
                     db.Movie.create({
                         movie_name: JSON.parse(body).Title,
                         movie_poster: JSON.parse(body).Poster,
                         movie_year: JSON.parse(body).Year,
-                        
 
-                    }).then(function() {
+
+                    }).then(function () {
                         res.redirect('/');
                     });
 
