@@ -1,7 +1,7 @@
-let express = require('express');
-let router = express.Router();
-let request = require('request');
-let db = require('../models');
+const express = require('express');
+const router = express.Router();
+const request = require('request');
+var db = require('../models');
 
 
 router.get('/', function(req, res) {
