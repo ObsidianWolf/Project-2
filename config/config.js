@@ -12,7 +12,7 @@ module.exports = {
   "test": {
       "username": "root",
       "password": "liam2898",
-      "database": "binge",
+     "database": "binge",
       "host": "localhost",
       "dialect": "mysql",
       "logging": false

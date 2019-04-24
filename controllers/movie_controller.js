@@ -30,7 +30,7 @@ router.get('/year', function(req, res) {
 
 router.post('/api/new/movie', function(req, res) {
 
-        let movieName = req.body.name;
+        let movieName = id.search;
 
         let queryUrl = "http://omdbapi.com/?apikey=9ced732d&t=" + movieName;
 
