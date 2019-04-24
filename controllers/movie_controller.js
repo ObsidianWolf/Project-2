@@ -3,12 +3,11 @@ let router = express.Router();
 let request = require('request');
 let db = require('../models');
 
-
 router.get('/', function(req, res) {
     db.Movie.findAll({
         order: [['movie_name', 'ASC']]
-
     }).then(function(data) {
+        console.log(data)
         let hbsObject = {
             movies: data
         };
@@ -24,7 +23,7 @@ router.get('/year', function(req, res) {
         let hbsObject = {
             movies: data
         };
-        res.render('index', hbsObject);
+        res.render('movie', hbsObject);
     });
 });
 
