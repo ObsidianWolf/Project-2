@@ -4,7 +4,7 @@ module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     db.Movie.findAll({}).then(function(Movie) {
-      res.render("index", {
+      res.render("movie", {
         msg: "Welcome!",
         examples: Movie
       });
