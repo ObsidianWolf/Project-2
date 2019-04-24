@@ -23,6 +23,7 @@ module.exports = function (app) {
   // Get to the movie page
   app.get("/movie", function (req, res) {
     db.Movie.findAll().then(function (dbMovie) {
+      console.log(dbMovie[0])
       res.render("movie", {
         movie: dbMovie
       });

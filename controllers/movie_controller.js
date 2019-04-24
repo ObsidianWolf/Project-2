@@ -25,7 +25,7 @@ router.get('/year', function (req, res) {
         let hbsObject = {
             movies: data
         };
-        res.render('index', hbsObject);
+        res.render('movie', hbsObject);
     });
 });
 
