@@ -4,11 +4,7 @@ var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
 var db = require("./models");
 var app= express();
-
-
-
 app.use(express.static("public"));
-
 var PORT = process.env.PORT || 8080;
 
 app.engine(
