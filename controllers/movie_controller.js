@@ -7,12 +7,14 @@ var db = require('../models');
 router.get('/', function(req, res) {
     db.Movie.findAll({
         order: [['movie_name', 'ASC']]
-
+      
     }).then(function(data) {
         let hbsObject = {
             movies: data
         };
         res.render('index', hbsObject);
+
+        
     });
 });
 
