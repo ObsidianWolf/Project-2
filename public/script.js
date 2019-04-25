@@ -15,7 +15,7 @@ $("#submitMovie").on("click", function (event) {
   event.preventDefault();
    // Send the PUT request.
    $.ajax({
-    url:"/api/Movie",
+    url:"/api/movie",
     method: "POST",
     data:{
       search: $("#movieToSearchFor").val()
