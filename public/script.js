@@ -10,23 +10,36 @@ function closeNav() {
   document.body.style.backgroundColor = "rgba(73,58,50)";
 }
 
-var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "https://api.themoviedb.org/3/find/%7Bexternal_id%7D?external_source=imdb_id&language=en-US&api_key=%3C%3Capi_key%3E%3E",
-  "method": "GET",
-  "headers": {},
-  "data": "{}"
-}
-
-$.ajax(settings).done(function (response) {
-  console.log(response);
-  var movie = response.movie[0];
-  var title = movie.title;
-  var poster = movie.poster;
-  var year = movie.year;
-
-
-  $("#movie").html(title + '<br>' + poster + '<br>' + year);
-
+// Creat an onclick function for the id "submitMovie", have that go to the API endpoint /api/movie
+$("#submitMovie").on("click", function (event) {
+  event.preventDefault();
+   // Send the PUT request.
+   $.ajax({
+    url:"/api/Movie",
+    method: "POST",
+    data:{
+      search: $("#movieToSearchFor").val()
+    }
+}).then(function (res) {
+      console.log("movie information: " + res);
+      // Reload the page to get the updated list
+      location.reload();
+    
 });
+
+  console.log("Search button clicked and executed");
+});
+
+// $.ajax(settings).done(function (response) {
+//   console.log(response);
+
+//   var movie = response.movie[0];
+//   var title = movie.title;
+//   var poster = movie.poster;
+//   var year = movie.year;
+
+
+
+
+// });
+

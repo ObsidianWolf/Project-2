@@ -3,8 +3,8 @@ var db = require("../models");
 module.exports = function(app) {
   // Get all Movie
   app.get("/api/Movie", function(req, res) {
-    db.Movie.findAll({}).then(function(dbMovie) {
-      res.json(dbMovie);
+    Model.findAll({
+      attributes: ['', '']
     });
   });
 
