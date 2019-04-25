@@ -12,7 +12,7 @@ module.exports = function (app) {
   });
 
   // Load example page and pass in an example by id
-  app.get("/movie/:id", function (req, res) {
+  app.get("/movie/id", function (req, res) {
     db.Movie.findOne({ where: { id: req.params.id } }).then(function (dbMovie) {
       res.render("movie", {
         movie: dbMovie
@@ -21,14 +21,10 @@ module.exports = function (app) {
   });
 
   // Get to the movie page
-  app.get("/movie", function (req, res) {
-    db.Movie.findAll().then(function (dbMovie) {
-      console.log(dbMovie[0])
-      res.render("movie", {
-        movie: dbMovie
-      });
+  app.get("/view", function (req, res) {
+      res.render("view")
     });
-  });
+  
 
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {
