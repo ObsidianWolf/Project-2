@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    const Movie = sequelize.define("Movie", {
+    const Movie = sequelize.define("movie", {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
