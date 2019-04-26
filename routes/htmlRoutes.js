@@ -3,7 +3,7 @@ var db = require("../models");
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
-    db.Movie.findAll({}).then(function (dbMovie) {
+    db.movie.findAll({}).then(function (dbMovie) {
       res.render("index", {
         msg: "Welcome!",
         movie: dbMovie
@@ -13,7 +13,7 @@ module.exports = function (app) {
 
   // Load example page and pass in an example by id
   app.get("/movie/id", function (req, res) {
-    db.Movie.findOne({ where: { id: req.params.id } }).then(function (dbMovie) {
+    db.movie.findOne({ where: { id: req.params.id } }).then(function (dbMovie) {
       res.render("movie", {
         movie: dbMovie
       });

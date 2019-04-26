@@ -6,7 +6,8 @@ var db = require("./models");
 var app= express();
 app.use(express.static("public"));
 var PORT = process.env.PORT || 8080;
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.engine(
     "handlebars",
     exphbs({
@@ -19,8 +20,7 @@ require("./routes/apiRoutes.js")(app);
 require("./routes/htmlRoutes.js")(app);
   
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+
 
 var routes = require('./controllers/movie_controller.js');
 app.use('/', routes);
