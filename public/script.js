@@ -11,21 +11,22 @@ function closeNav() {
 }
 
 // Creat an onclick function for the id "submitMovie", have that go to the API endpoint /api/movie
-$("#submitMovie").on("click", function (event) {
+$("#myForm").on("submit", function (event) {
+  // You can't press enter or it refreshes the page. Clicking on the button prevents default.
   event.preventDefault();
-   // Send the PUT request.
-   $.ajax({
-    url:"/api/movie",
+  // Send the PUT request.
+  $.ajax({
+    url: "/api/movie",
     method: "POST",
-    data:{
+    data: {
       search: $("#movieToSearchFor").val()
     }
-}).then(function (res) {
-      console.log("movie information: " + res);
-      // Reload the page to get the updated list
-      location.reload();
-    
-});
+  }).then(function (res) {
+    // console.log(res);
+     displayMovie(res); // You need to make this function
+    // Go look at the API class activities that call OMDB
+    // Dynamically generate a page that displays the movie info    
+  });
 
   console.log("Search button clicked and executed");
 });
@@ -39,7 +40,16 @@ $("#submitMovie").on("click", function (event) {
 //   var year = movie.year;
 
 
+function displayMovie(res) {
+  var title = res.Title;
+  var poster = res.Poster;
+  var year = res.Year;
 
+  console.log(title);
+  console.log(poster);
+  console.log(year);
+
+}
 
 // });
 

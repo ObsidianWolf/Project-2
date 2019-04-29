@@ -16,8 +16,8 @@ module.exports = function(app) {
     var search = req.body.search;
     axios.get( "https://www.omdbapi.com/?t="+ search +"&y=&plot=short&apikey=trilogy")
   .then(function(result) {
-      console.log(result);
-      res.send(result.data)
+      console.log(result.data);
+      res.send(result.data);
     });
     // Create a movie object based on the response of the movie api
     // movie name, movie poster, movie year
