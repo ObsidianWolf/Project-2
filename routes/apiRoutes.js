@@ -14,7 +14,7 @@ module.exports = function(app) {
   app.post("/api/movie", function(req, res) {
     // AJAX request to movie API
     var search = req.body.search;
-    axios.get( "https://www.omdbapi.com/?t="+ search +"&y=&plot=short&apikey=trilogy")
+    axios.get( "https://www.omdbapi.com/?t="+ search +"&apikey=trilogy")
   .then(function(result) {
       console.log(result.data);
       res.send(result.data);
