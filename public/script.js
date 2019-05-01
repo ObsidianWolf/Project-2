@@ -45,9 +45,17 @@ function displayMovie(res) {
   var poster = res.Poster;
   var year = res.Year;
 
-  console.log(title);
-  console.log(poster);
-  console.log(year);
+  var container = $('<div>').addClass('searchResultContainer');
+
+  $('<img>').attr('src', poster).addClass('poster').appendTo(container);
+
+  $('<div>').text(title).addClass('movieTitle').appendTo(container);
+
+  $('<div>').text(year).addClass('movieYear').appendTo(container);
+
+  $('#searchResult').append(container);
+
+
 
 }
 
