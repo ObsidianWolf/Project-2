@@ -33,7 +33,11 @@ module.exports = {
             "logging": false
           },
           "production": {
-              "use_env_variable": "JAWSDB_URL",
+            "username": "t6yhuwvglkki5k4f",
+            "password": "z8srcan35ip8xkgg",
+            "database": "xm9f1btyvlhyl3mb",
+            "host": "jw0ch9vofhcajqg7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+              "use_env_variable": "mysql://t6yhuwvglkki5k4f:z8srcan35ip8xkgg@jw0ch9vofhcajqg7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/xm9f1btyvlhyl3mb",
               "dialect": "mysql"
             }
           }
